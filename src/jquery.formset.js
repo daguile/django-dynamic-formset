@@ -56,7 +56,8 @@
                 var delCssSelector = $.trim(options.deleteCssClass).replace(/\s+/g, '.'),
                     addCssSelector = $.trim(options.addCssClass).replace(/\s+/g, '.');
 
-                var delButtonHTML = '<a class="' + options.deleteCssClass + '" href="javascript:void(0)">' + options.deleteText +'</a>';
+                var deleteExtraCssClasses = options.deleteExtraCssClasses.join(' ') + ' ';
+                var delButtonHTML = '<a class="' + deleteExtraCssClasses + options.deleteCssClass + '" href="javascript:void(0)">' + options.deleteText +'</a>';
                 if (options.deleteContainerClass) {
                     // If we have a specific container for the remove button,
                     // place it as the last child of that container:
@@ -180,8 +181,8 @@
             }
             // FIXME: Perhaps using $.data would be a better idea?
             options.formTemplate = template;
-
-            var addButtonHTML = '<a class="' + options.addCssClass + '" href="javascript:void(0)">' + options.addText + '</a>';
+            var addExtraCssClasses = options.addExtraCssClasses.join(' ') + ' ';
+            var addButtonHTML = '<a class="' + addExtraCssClasses + options.addCssClass + '" href="javascript:void(0)">' + options.addText + '</a>';
             if (options.addContainerClass) {
                 // If we have a specific container for the "add" button,
                 // place it as the last child of that container:
@@ -239,6 +240,8 @@
         deleteContainerClass: null,      // Container CSS class for the delete link
         addCssClass: 'add-row',          // CSS class applied to the add link
         deleteCssClass: 'delete-row',    // CSS class applied to the delete link
+        addExtraCssClasses: [],          // Additional CSS classes to apply to add link
+        deleteExtraCssClasses: [],       // Additional CSS classes to apply to delete link
         formCssClass: 'dynamic-form',    // CSS class applied to each form in a formset
         extraClasses: [],                // Additional CSS classes, which will be applied to each form in turn
         keepFieldValues: '',             // jQuery selector for fields whose values should be kept when the form is cloned
